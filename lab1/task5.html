@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Обчислення ряду</title>
+  </head>
+  <body>
+    <h1>Обчислення ряду</h1>
+    <p>Введіть значення для обчислення ряду:</p>
+
+    <label for="x">Значення x:</label>
+    <input type="number" id="x" name="x" /><br /><br />
+
+    <label for="y">Значення y:</label>
+    <input type="number" id="y" name="y" /><br /><br />
+
+    <button onclick="calculate()">Обчислити</button>
+
+    <p>Результат:</p>
+    <div id="result"></div>
+
+    <script>
+      function calculate() {
+        const x = parseFloat(document.getElementById("x").value);
+        const y = parseFloat(document.getElementById("y").value);
+
+        // Додайте код для обчислення ряду тут, як у попередньому відповіді
+        const result = calculateSeries(x, y);
+
+        document.getElementById(
+          "result"
+        ).innerHTML = `Результат обчислення: ${result}`;
+      }
+
+      function calculateSeries(x, y) {
+        let result = 0;
+        for (let i = 7; i <= 11; i++) {
+          const term =
+            Math.pow(-1, i + 1) * ((x + y) / (2 + x)) * factorial(i + 3);
+          result += term;
+        }
+        return result;
+      }
+
+      function factorial(n) {
+        if (n === 0 || n === 1) {
+          return 1;
+        } else {
+          return n * factorial(n - 1);
+        }
+      }
+    </script>
+  </body>
+</html>

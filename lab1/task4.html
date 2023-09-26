@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script>
+      function fun() {
+        let d, x, y;
+        x = parseInt(main_form.t_x.value);
+        y = parseInt(main_form.t_y.value);
+        if ((2 * x) / y != 0) d = x * y - x;
+        else if (14 * x != y || 2 * y < 4) d = (x - 2 * y) / x;
+        else d = x - y;
+        main_form.t_d.value = "" + d;
+      }
+    </script>
+  </head>
+  <body>
+    <form id="main_form">
+      x<input type="text" id="t_x" value="10" /><br />
+      y<input type="text" id="t_y" value="-2" /><br />
+      d <input type="text" id="t_d" value="?" />
+      <input type="button" onClick="fun();" value="Розрахувати" />
+    </form>
+  </body>
+</html>

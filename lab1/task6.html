@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      let continents = [
+        "Євразія",
+        "Африка",
+        "Північна Америка",
+        "Південна Америка",
+        "Антарктида",
+        "Австралія",
+      ];
+
+      let densities = ["150", "42", "22", "25", "0.0003", "3"];
+
+      let areas = [
+        "54,490,000",
+        "30,370,000",
+        "24,709,000",
+        "17,840,000",
+        "14,000,000",
+        "9,008,500",
+      ];
+
+      function fun1() {
+        let inputElement = document.forms["entryForm"]["entry"];
+        let outputElement = document.forms["entryForm"]["output"];
+        let continentName = inputElement.value;
+
+        let index = continents.indexOf(continentName);
+
+        if (index !== -1) {
+          outputElement.value = `Густина населення: ${densities[index]} осіб/км², Площа: ${areas[index]} км²`;
+        } else {
+          outputElement.value = "Континент не знайдений";
+        }
+      }
+
+      function fun2() {
+        let inputElement = document.forms["entryForm"]["entry"];
+        let outputElement = document.forms["entryForm"]["output"];
+        let continentName = inputElement.value;
+
+        let index = continents.indexOf(continentName);
+
+        if (index !== -1) {
+          let density = parseFloat(densities[index]);
+          let area = parseFloat(areas[index]);
+          let population = density * area;
+          outputElement.value = `Населення: ${population.toFixed(2)} осіб`;
+        } else {
+          outputElement.value = "Континент не знайдений";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form name="entryForm">
+      Введіть назву континенту:
+      <input type="text" name="entry" />
+      <input type="button" value="Густина і площа" onclick="fun1()" />
+      <input type="button" value="Населення" onclick="fun2()" />
+      <br />
+      <input type="text" size="70" name="output" />
+    </form>
+  </body>
+</html>
