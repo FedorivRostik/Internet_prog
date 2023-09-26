@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Простий калькулятор</title>
+    <script>
+      function calculate() {
+        // Отримуємо вираз з поле введення
+        var expression = document.getElementById("expression").value;
+
+        try {
+          // Використовуємо функцію eval() для обчислення результату
+          var result = eval(expression);
+
+          // Виводимо результат на сторінку
+          document.getElementById("result").innerHTML = "Результат: " + result;
+        } catch (error) {
+          // Обробляємо помилки (наприклад, вираз не є правильним)
+          document.getElementById("result").innerHTML =
+            "Помилка: " + error.message;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Простий калькулятор</h1>
+    <input type="text" id="expression" placeholder="Введіть вираз" />
+    <button onclick="calculate()">Обчислити</button>
+    <p id="result"></p>
+  </body>
+</html>

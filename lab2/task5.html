@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.info("Це інформаційне повідомлення.");
+      console.warn("Це попередження.");
+      console.error("Це повідомлення про помилку.");
+      const obj = { name: "John", age: 30 };
+      console.dir(obj);
+      console.dirxml(document.body);
+      console.time("timer");
+      // Ваш код, який потрібно виміряти в часі
+      console.timeEnd("timer");
+      console.profile("myProfile");
+      // Ваш код для профілювання
+      console.profileEnd("myProfile");
+      console.assert(1 === 2, "1 не дорівнює 2");
+    </script>
+  </body>
+</html>

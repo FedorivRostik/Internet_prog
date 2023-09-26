@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      let numRows, numCols;
+
+      function buildMatrix() {
+        numRows = parseInt(document.getElementById("t_str").value);
+        numCols = parseInt(document.getElementById("t_stb").value);
+
+        let tableHTML = "<table>\n";
+
+        for (let i = 1; i <= numRows; i++) {
+          tableHTML += "<tr>\n";
+          for (let j = 1; j <= numCols; j++) {
+            let cellValue = 3 * j + 2 * i;
+            tableHTML += "<td>";
+            tableHTML += '<input type="text" value="' + cellValue + '">';
+            tableHTML += "</td>\n";
+          }
+          tableHTML += "</tr>\n";
+        }
+
+        tableHTML += "</table>";
+        document.getElementById("main_div").innerHTML = tableHTML;
+      }
+
+      function calculateProduct() {
+        let mainDiv = document.getElementById("main_div");
+        let table = mainDiv.querySelector("table"); // Get the table within the main_div
+
+        if (table) {
+          let lastColumn = table.rows[0].cells.length - 1;
+          let product = 1;
+
+          for (let i = 0; i < table.rows.length; i++) {
+            let cellValue = parseInt(
+              table.rows[i].cells[lastColumn].querySelector("input").value
+            );
+
+            if (!isNaN(cellValue)) {
+              product *= cellValue;
+            }
+          }
+
+          alert("Добуток елементів останнього стовпця: " + product);
+        } else {
+          alert("Побудуйте таблицю перед розрахунком добутку.");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>Кількість рядків</td>
+        <td><input type="text" id="t_str" value="5" /></td>
+      </tr>
+      <tr>
+        <td>Кількість стовпців</td>
+        <td><input type="text" id="t_stb" value="5" /></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            onClick="buildMatrix();"
+            value="Побудувати матрицю"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            onClick="calculateProduct();"
+            value="Розрахувати добуток останнього стовпця"
+          />
+        </td>
+      </tr>
+    </table>
+    <div id="main_div"></div>
+  </body>
+</html>

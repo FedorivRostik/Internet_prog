@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body onload="clock()">
+    <form name="clock">
+      Час:
+      <input type="text" name="time" size="15" value="" /><br />
+      Дата:
+      <input type="text" name="date" size="15" value="" />
+    </form>
+    <script>
+      function clock() {
+        let now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+
+        let date = now.getDate();
+        let month = now.getMonth() + 1;
+        let year = now.getFullYear();
+
+        // Форматуємо години, хвилини та секунди з додаванням "0" перед однозначними числами
+        let timeStr = `${hours < 10 ? "0" : ""}${hours}$${
+          minutes < 10 ? "0" : ""
+        }${minutes}$${seconds < 10 ? "0" : ""}${seconds}`;
+
+        // Форматуємо дату з додаванням "0" перед однозначними числами
+        let dateStr = `${month < 10 ? "0" : ""}${month}$${
+          date < 10 ? "0" : ""
+        }${date}$${year}`;
+
+        // Задаємо значення в поля вводу
+        document.clock.time.value = timeStr;
+        document.clock.date.value = dateStr;
+
+        setTimeout(clock, 1000);
+      }
+    </script>
+  </body>
+</html>
