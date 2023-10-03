@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тестування</title>
+  </head>
+  <body>
+    <h1>Тестування</h1>
+    <form id="quizForm">
+      <ol>
+        <!-- Додайте питання тут, з аналогічними структурами як у попередньому коді -->
+
+        <!-- Питання 1 -->
+        <li>
+          <p>Питання 1: Яка мова програмування є стандартом у веб-розробці?</p>
+          <input type="radio" name="q1" value="JavaScript" /> JavaScript
+          <input type="radio" name="q1" value="Python" /> Python
+          <input type="radio" name="q1" value="Java" /> Java
+          <input type="radio" name="q1" value="HTML" /> HTML
+        </li>
+
+        <!-- Питання 2 -->
+        <li>
+          <p>Питання 2: Які з цих браузерів підтримують HTML5?</p>
+          <input type="checkbox" name="q2" value="Chrome" /> Chrome
+          <input type="checkbox" name="q2" value="Firefox" /> Firefox
+          <input type="checkbox" name="q2" value="Internet Explorer" /> Internet
+          Explorer <input type="checkbox" name="q2" value="Safari" /> Safari
+        </li>
+
+        <!-- Питання 3 -->
+        <li>
+          <p>
+            Питання 3: Які з цих мов програмування використовуються для бекенду?
+          </p>
+          <select name="q3" multiple>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="Ruby">Ruby</option>
+          </select>
+        </li>
+
+        <!-- Питання 4 -->
+        <li>
+          <p>Питання 4: Які з цих рядкових типів даних є незмінюваними?</p>
+          <input type="checkbox" name="q4" value="String" /> String
+          <input type="checkbox" name="q4" value="Array" /> Array
+          <input type="checkbox" name="q4" value="Object" /> Object
+          <input type="checkbox" name="q4" value="Boolean" /> Boolean
+        </li>
+
+        <!-- Питання 5 -->
+        <li>
+          <p>Питання 5: Яка найновіша версія HTML?</p>
+          <input type="text" name="q5" />
+        </li>
+
+        <!-- Питання 6 -->
+        <li>
+          <p>
+            Питання 6: Яка мова найбільше використовується для розробки
+            мобільних додатків?
+          </p>
+          <input type="radio" name="q6" value="JavaScript" /> JavaScript
+          <input type="radio" name="q6" value="Swift" /> Swift
+          <input type="radio" name="q6" value="Python" /> Python
+          <input type="radio" name="q6" value="C#" /> C#
+        </li>
+
+        <!-- Питання 7 -->
+        <li>
+          <p>Питання 7: Яка з цих баз даних є NoSQL базою даних?</p>
+          <input type="checkbox" name="q7" value="MySQL" /> MySQL
+          <input type="checkbox" name="q7" value="PostgreSQL" /> PostgreSQL
+          <input type="checkbox" name="q7" value="MongoDB" /> MongoDB
+          <input type="checkbox" name="q7" value="Oracle" /> Oracle
+        </li>
+      </ol>
+      <input type="submit" value="Завершити тестування" />
+    </form>
+
+    <div id="results">
+      <h2>Результати тестування</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Питання</th>
+            <th>Обрані варіанти відповіді</th>
+            <th>Отриманий бал</th>
+          </tr>
+        </thead>
+        <tbody id="resultsTable"></tbody>
+      </table>
+      <p id="totalScore">Загальний бал: 0</p>
+    </div>
+
+    <script>
+      const quizForm = document.getElementById("quizForm");
+      const resultsTable = document.getElementById("resultsTable");
+      const totalScore = document.getElementById("totalScore");
+
+      quizForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(quizForm);
+        let total = 0;
+        const questionScores = {};
+
+        resultsTable.innerHTML = "";
+
+        formData.forEach((value, name) => {
+          const correctAnswers = {
+            q1: ["JavaScript"],
+            q2: ["Chrome", "Firefox"],
+            q3: ["JavaScript", "Python"],
+            q4: ["String", "Boolean"],
+            q5: ["HTML5", "HTML 5", "HTML"],
+            q6: ["JavaScript"],
+            q7: ["MongoDB"],
+          };
+
+          const correct = correctAnswers[name] || [];
+          const selected = Array.isArray(value) ? Array.from(value) : [value];
+
+          const intersection = selected.filter((option) =>
+            correct.includes(option)
+          );
+          let score = 0;
+
+          if (correct.length === 0) {
+            score = 0;
+          } else if (
+            intersection.length === correct.length &&
+            correct.length > 0
+          ) {
+            score = correct.length;
+          } else if (intersection.length >= 1) {
+            score = 1;
+          }
+
+          questionScores[name] = score;
+          total += score;
+
+          const row = document.createElement("tr");
+          const questionCell = document.createElement("td");
+          const selectedCell = document.createElement("td");
+          const scoreCell = document.createElement("td");
+
+          questionCell.textContent = name;
+          selectedCell.textContent = selected.join(", ");
+          scoreCell.textContent = score;
+
+          row.appendChild(questionCell);
+          row.appendChild(selectedCell);
+          row.appendChild(scoreCell);
+
+          resultsTable.appendChild(row);
+        });
+
+        totalScore.textContent = `Загальний бал: ${total}`;
+
+        // Виведіть під таблицею поставлені запитання, обрані варіанти відповіді і отримані бали за кожне питання
+        console.log("Результати тестування:");
+        for (const [question, score] of Object.entries(questionScores)) {
+          console.log(`Питання: ${question}, Отриманий бал: ${score}`);
+        }
+        console.log(`Загальний бал: ${total}`);
+      });
+    </script>
+  </body>
+</html>
