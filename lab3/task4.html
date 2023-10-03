@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Перегляд зображень</title>
+  </head>
+  <body>
+    <img id="image" src="" style="width: 100px" alt="Зображення" />
+    <br />
+    <button onclick="previousImage()">Назад</button>
+    <button onclick="nextImage()">Вперед</button>
+
+    <script>
+      const imageNames = [
+        "./img/file1.jpg",
+        "./img/file2.jpg",
+        "./img/file3.jpg",
+      ];
+      let currentIndex = 0;
+      const imageElement = document.getElementById("image");
+
+      function showImage(index) {
+        if (index >= 0 && index < imageNames.length) {
+          imageElement.src = imageNames[index];
+          currentIndex = index;
+        }
+      }
+
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % imageNames.length;
+        showImage(currentIndex);
+      }
+
+      function previousImage() {
+        currentIndex =
+          (currentIndex - 1 + imageNames.length) % imageNames.length;
+        showImage(currentIndex);
+      }
+
+      // Відобразити перше зображення при завантаженні сторінки
+      showImage(currentIndex);
+    </script>
+  </body>
+</html>

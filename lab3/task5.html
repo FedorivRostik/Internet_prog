@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Таблиця множення</title>
+  </head>
+  <body>
+    <h1>Перевірка знань таблиці множення</h1>
+    <p id="score">Бали: 0</p>
+    <p id="attempts">Спроби: 0 / 10</p>
+    <button onclick="nextTask()">Наступне завдання</button>
+    <p id="task">Завдання:</p>
+    <input type="text" id="answer" placeholder="Введіть відповідь" />
+    <button onclick="checkAnswer()">Перевірити</button>
+    <p id="result"></p>
+
+    <script>
+      let score = 0;
+      let attempts = 0;
+      let currentTask = "";
+
+      function generateRandomTask() {
+        const multiplier1 = Math.floor(Math.random() * 10);
+        const multiplier2 = Math.floor(Math.random() * 10);
+        return `${multiplier1} x ${multiplier2}`;
+      }
+
+      function nextTask() {
+        if (attempts < 10) {
+          currentTask = generateRandomTask();
+          document.getElementById(
+            "task"
+          ).textContent = `Завдання: ${currentTask}`;
+          document.getElementById("answer").value = "";
+          document.getElementById("result").textContent = "";
+          attempts++;
+          document.getElementById(
+            "attempts"
+          ).textContent = `Спроби: ${attempts} / 10`;
+        } else {
+          alert("Ви вже виконали всі завдання!");
+        }
+      }
+
+      function checkAnswer() {
+        if (attempts >= 10) {
+          alert("Ви вже виконали всі завдання!");
+          return;
+        }
+
+        const userAnswer = parseInt(document.getElementById("answer").value);
+        const [multiplier1, multiplier2] = currentTask
+          .split("x")
+          .map((item) => parseInt(item));
+        const correctAnswer = multiplier1 * multiplier2;
+
+        if (userAnswer === correctAnswer) {
+          score++;
+          document.getElementById("result").textContent = "Вірно!";
+        } else {
+          document.getElementById("result").textContent =
+            "Невірно. Спробуйте ще раз.";
+        }
+
+        document.getElementById("score").textContent = `Бали: ${score}`;
+
+        if (attempts < 10) {
+          nextTask();
+        }
+      }
+    </script>
+  </body>
+</html>

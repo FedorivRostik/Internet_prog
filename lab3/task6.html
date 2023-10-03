@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Дерево ієрархії</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="hierarchy"></ul>
+
+    <script>
+      const data = [
+        {
+          name: "fruits",
+          children: [
+            {
+              name: "apple",
+              children: [],
+            },
+            {
+              name: "pineapple",
+              children: [],
+            },
+            {
+              name: "apricot",
+              children: [],
+            },
+            {
+              name: "pear",
+              children: [],
+            },
+            {
+              name: "lemon",
+              children: [],
+            },
+          ],
+        },
+        {
+          name: "vegetables",
+          children: [
+            {
+              name: "potatoes",
+              children: [],
+            },
+            {
+              name: "beetroot",
+              children: [],
+            },
+            {
+              name: "carrots",
+              children: [],
+            },
+            {
+              name: "pear",
+              children: [],
+            },
+          ],
+        },
+      ];
+
+      function createTree(data) {
+        const ul = document.createElement("ul");
+
+        data.forEach((item) => {
+          const li = document.createElement("li");
+          const span = document.createElement("span");
+          span.textContent = "▼ ";
+          span.classList.add("toggle");
+
+          const a = document.createElement("a");
+          a.textContent = item.name;
+
+          li.appendChild(span);
+          li.appendChild(a);
+
+          const childList = createTree(item.children);
+          if (item.children.length > 0) {
+            li.appendChild(childList);
+          } else {
+            span.style.visibility = "hidden"; // Приховати значок, якщо вузол не має дочірніх елементів
+          }
+
+          ul.appendChild(li);
+        });
+
+        return ul;
+      }
+
+      const hierarchy = document.getElementById("hierarchy");
+      hierarchy.appendChild(createTree(data));
+
+      const toggleElements = document.querySelectorAll(".toggle");
+
+      toggleElements.forEach((toggleElement) => {
+        toggleElement.addEventListener("click", function () {
+          const childList = this.parentElement.querySelector("ul");
+          if (childList) {
+            childList.classList.toggle("hidden");
+            this.textContent = childList.classList.contains("hidden")
+              ? "▼ "
+              : "▲ ";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

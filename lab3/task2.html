@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Екранна клавіатура</title>
+    <style>
+      .keyboard {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-gap: 20px;
+      }
+      .key {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: antiquewhite;
+        display: inline-flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        border: medium dashed black;
+        border-radius: 13%;
+      }
+      #textInput {
+        width: 300px;
+        height: 30px;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="keyboard" id="keyboard"></div>
+    <textarea id="textInput" placeholder="Текст"></textarea>
+    <br />
+    <button onclick="clearText()">Очистити поле</button>
+
+    <script>
+      const alphabet = ["а", "б", "в", "г", "д", "е", "є", "и", "і", "ї"];
+      const keyboardDiv = document.getElementById("keyboard");
+      const textInput = document.getElementById("textInput");
+
+      alphabet.forEach((letter) => {
+        const keyDiv = document.createElement("div");
+        keyDiv.classList.add("key");
+        keyDiv.textContent = letter;
+        keyDiv.addEventListener("click", () => appendLetter(letter));
+        keyboardDiv.appendChild(keyDiv);
+      });
+
+      function appendLetter(letter) {
+        textInput.value += letter;
+      }
+
+      function clearText() {
+        textInput.value = "";
+      }
+    </script>
+  </body>
+</html>
