@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      h2 {
+        text-align: center;
+      }
+      .error {
+        color: red;
+      }
+
+      .valid {
+        color: green;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+
+      .form-row label {
+        margin-bottom: 5px;
+      }
+
+      .form-row input {
+        padding: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .form-row input.error {
+        border: 2px solid red;
+      }
+
+      .form-row input.valid {
+        border: 2px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Форма реєстрації</h2>
+    <form id="registrationForm">
+      <div class="form-container">
+        <div class="form-row">
+          <label for="email">E-mail:</label>
+          <input type="text" id="email" name="email" />
+          <span id="emailError" class="error"></span>
+        </div>
+        <div class="form-row">
+          <label for="name">Ім'я та прізвище:</label>
+          <input type="text" id="name" name="name" />
+          <span id="nameError" class="error"></span>
+        </div>
+        <div class="form-row">
+          <label for="login">Логін:</label>
+          <input type="text" id="login" name="login" />
+          <span id="loginError" class="error"></span>
+        </div>
+        <div class="form-row">
+          <label for="password">Пароль:</label>
+          <input type="password" id="password" name="password" />
+          <span id="passwordError" class="error"></span>
+        </div>
+        <div class="form-row">
+          <label for="zipcode">Поштовий індекс:</label>
+          <input type="text" id="zipcode" name="zipcode" />
+          <span id="zipcodeError" class="error"></span>
+        </div>
+        <input type="submit" value="Зареєструватися" />
+      </div>
+    </form>
+
+    <script>
+      const form = document.getElementById("registrationForm");
+      form.addEventListener("submit", function (event) {
+        // Відмінити стандартну подію форми (відправку на сервер)
+        event.preventDefault();
+
+        // Функція для перевірки e-mail
+        function validateEmail(email) {
+          const emailRegex = /^[a-zA-Z0-9._-]+@pnu.edu.ua$/;
+          return emailRegex.test(email);
+        }
+
+        // Функція для перевірки імені та прізвища
+        function validateName(name) {
+          const nameRegex = /^([A-Z][a-z]+)( [A-Z]+)$/; // Перше слово з великої літери, друге слово всі великі літери
+          return nameRegex.test(name);
+        }
+
+        // Функція для перевірки логіну
+        function validateLogin(login) {
+          const loginRegex = /^[a-zA-Z]+$/;
+          return loginRegex.test(login);
+        }
+
+        // Функція для перевірки паролю
+        function validatePassword(password) {
+          const passwordRegex =
+            /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[-!@#$%^&*]).{8,}$/;
+          return passwordRegex.test(password);
+        }
+
+        // Функція для перевірки поштового індексу
+        function validateZipcode(zipcode) {
+          const zipcodeRegex = /^\d{5}$/;
+          return zipcodeRegex.test(zipcode);
+        }
+
+        // Перевірка і відображення результатів
+        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value;
+        const login = document.getElementById("login").value;
+        const password = document.getElementById("password").value;
+        const zipcode = document.getElementById("zipcode").value;
+
+        document.getElementById("emailError").textContent = validateEmail(email)
+          ? ""
+          : "Введіть правильний e-mail";
+        document.getElementById("nameError").textContent = validateName(name)
+          ? ""
+          : "Введіть правильне ім'я та прізвище";
+        document.getElementById("loginError").textContent = validateLogin(login)
+          ? ""
+          : "Введіть правильний логін";
+        document.getElementById("passwordError").textContent = validatePassword(
+          password
+        )
+          ? ""
+          : "Введіть правильний пароль";
+        document.getElementById("zipcodeError").textContent = validateZipcode(
+          zipcode
+        )
+          ? ""
+          : "Введіть правильний поштовий індекс";
+      });
+    </script>
+  </body>
+</html>

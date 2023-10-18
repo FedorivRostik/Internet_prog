@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let s = "dwbyu@mail.ua";
+      let r = /^([a-z0-9]+)(\.[a-z0-9]+)*@([a-z0-9]+)(\.[a-z0-9]+)*$/i;
+      let a = s.match(r);
+      for (i = 0; i < a.length; i++) {
+        document.writeln("<hr> a[" + i + "] " + a[i]);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
+<pre>
+a[0] - вся e-mail адреса.
+a[1] - локальна частина адреси (перед символом "@").
+a[2] - частина домену з крапкою перед ним.
+a[3] - справжня доменна частина без крапки.
+</pre>
