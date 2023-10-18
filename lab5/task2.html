@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Стилі для вертикального меню */
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 200px; /* Задаємо ширину меню */
+      }
+
+      li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        cursor: pointer; /* Змінюємо курсор на підказку про клік */
+      }
+
+      li:hover {
+        background-color: #ddd;
+      }
+
+      /* Стилі для активних пунктів */
+      .active {
+        background-color: yellow; /* Жовтий фон */
+        color: black; /* Чорний текст */
+      }
+
+      /* Стилі для неактивних пунктів */
+      .inactive {
+        background-color: purple; /* Фіолетовий фон */
+        color: white; /* Білий текст */
+      }
+
+      /* Стилі для підменю */
+      .sub-menu {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 200px; /* Ширина вертикального меню */
+        width: 200px;
+      }
+
+      /* При кліку на пункт меню відображаємо або ховаємо підменю та міняємо класи */
+      .has-sub-menu.active .sub-menu {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li class="has-sub-menu inactive">Пункт 1</li>
+      <li class="has-sub-menu active">
+        Пункт 2
+        <ul class="sub-menu">
+          <li class="has-sub-menu inactive">Підпункт 2.1</li>
+          <li class="has-sub-menu active">
+            Підпункт 2.2
+            <ul class="sub-menu">
+              <li>Підпідпункт 2.2.1</li>
+              <li>Підпідпункт 2.2.2</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="has-sub-menu inactive">
+        Пункт 3
+        <ul class="sub-menu">
+          <li class="has-sub-menu active">
+            Підпункт 3.1
+            <ul class="sub-menu">
+              <li>Підпідпункт 3.1.1</li>
+              <li>Підпідпункт 3.1.2</li>
+            </ul>
+          </li>
+          <li class="has-sub-menu inactive">Підпункт 3.2</li>
+        </ul>
+      </li>
+    </ul>
+
+    <script>
+      const menuItems = document.querySelectorAll(".has-sub-menu");
+
+      // Додаємо обробник подій до всіх пунктів меню
+      menuItems.forEach((item) => {
+        item.addEventListener("click", function (event) {
+          // Знаходимо підменю, яке відповідає пункту меню
+          const subMenu = item.querySelector(".sub-menu");
+
+          // Перевіряємо, чи вже відкрите підменю, і відкриваємо/закриваємо його
+          if (subMenu.style.display === "block") {
+            subMenu.style.display = "none";
+            item.classList.remove("active");
+            item.classList.add("inactive");
+          } else {
+            subMenu.style.display = "block";
+            item.classList.remove("inactive");
+            item.classList.add("active");
+          }
+
+          // Зупиняємо подальшу обробку події, щоб не відбувався подвійний клік
+          event.stopPropagation();
+        });
+      });
+    </script>
+  </body>
+</html>
