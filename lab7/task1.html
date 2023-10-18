@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Open console</h2>
+    <h2>Task1</h2>
+    <script>
+      function reverseSequence(sequence) {
+        return sequence.split("").reverse().join("");
+      }
+
+      // Приклад використання:
+      const inputSequence = "12345";
+      const reversedSequence = reverseSequence(inputSequence);
+      console.log(reversedSequence); // Виведе "54321"
+
+      function no_zeros(arr) {
+        return arr.filter((num) => num !== 0);
+      }
+
+      // Приклад використання:
+      const inputArray = [1, 0, 2, 0, 3, 0];
+      const modifiedArray = no_zeros(inputArray);
+      console.log(modifiedArray); // Виведе [1, 2, 3]
+
+      function reverser(text) {
+        return text.split("").reverse().join("");
+      }
+
+      // Приклад використання:
+      let inputText = "Hello, World!";
+      const reversedText = reverser(inputText);
+      console.log(reversedText); // Виведе "!dlroW ,olleH"
+
+      function customReplace(inputText) {
+        // a) Друге і третє слово поміняти місцями
+        let words = inputText.split(" ");
+        [words[1], words[2]] = [words[2], words[1]];
+        const modifiedTextA = words.join(" ");
+
+        // b) Пропуски замінені на коми
+        const modifiedTextB = modifiedTextA.replace(/\s+/g, ", ");
+
+        return modifiedTextB;
+      }
+
+      // Приклад використання:
+      inputText = "Я не люблю морозиво";
+      const resultText = customReplace(inputText);
+      console.log(resultText); // Виведе "Я морозиво, люблю не"
+    </script>
+  </body>
+</html>

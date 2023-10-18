@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Open console</h2>
+    <h2>Task3</h2>
+    <script>
+      function toCamelCase(snakeCase) {
+        return snakeCase.replace(/_([a-z])/g, (_, letter) =>
+          letter.toUpperCase()
+        );
+      }
+
+      // Приклад використання:
+      let inputVariables = ["my_variable", "new_brand_product"];
+      let outputVariables = inputVariables.map(toCamelCase);
+      console.log("Вхідні змінні: ", inputVariables);
+      console.log("Вихідні змінні: ", outputVariables);
+
+      function toSnakeCase(camelCase) {
+        return camelCase.replace(/([A-Z])/g, "_$1").toLowerCase();
+      }
+
+      // Приклад використання:
+      inputVariables = ["myVariable", "newBrandProduct"];
+      outputVariables = inputVariables.map(toSnakeCase);
+      console.log("Вхідні змінні: ", inputVariables);
+      console.log("Вихідні змінні: ", outputVariables);
+
+      function replaceDates(text) {
+        return text.replace(/(\d{4})\/(\d{2})\/(\d{2})/g, "$3.$2.$1");
+      }
+
+      // Приклад використання:
+      let inputText = "Today's date is 2023/10/18 and tomorrow is 2023/10/19.";
+      let outputText = replaceDates(inputText);
+      console.log("Вихідний текст: ", outputText);
+
+      function replaceDates(text) {
+        return text.replace(/(\d{4})\/(\d{2})\/(\d{2})/g, "$3.$2.$1");
+      }
+
+      // Приклад використання:
+      inputText = "Today's date is 2023/10/18 and tomorrow is 2023/10/19.";
+      outputText = replaceDates(inputText);
+      console.log("Вихідний текст: ", outputText);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Open console</h2>
+    <h2>Task2</h2>
+    <script>
+      function compareStringsLength(str1, str2) {
+        if (str1.length > str2.length) {
+          return 1;
+        } else if (str1.length < str2.length) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+
+      // Приклад використання:
+      let result = compareStringsLength("abc", "defg");
+      console.log(result); // Виведе -1
+
+      function findAndCountCharacter(str, char) {
+        const indices = [];
+        let count = 0;
+        for (let i = 0; i < str.length; i++) {
+          if (str[i] === char) {
+            indices.push(i);
+            count++;
+          }
+        }
+        return { indices, count };
+      }
+
+      // Приклад використання:
+      result = findAndCountCharacter("hello, world", "o");
+      console.log(result.indices); // Виведе [4, 7]
+      console.log(result.count); // Виведе 2
+
+      function capitalizeFirstLetter(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
+      // Приклад використання:
+      result = capitalizeFirstLetter("hello");
+      console.log(result); // Виведе "Hello"
+
+      function countVowels(str) {
+        const vowels = "aeiouAEIOU";
+        let count = 0;
+        for (let i = 0; i < str.length; i++) {
+          if (vowels.includes(str[i])) {
+            count++;
+          }
+        }
+        return count;
+      }
+
+      // Приклад використання:
+      result = countVowels("Hello, World!");
+      console.log(result); // Виведе 3
+
+      function isSpam(str) {
+        const spamWords = [
+          "100% безкоштовно",
+          "збільшення продажів",
+          "тільки сьогодні",
+          "не видаляйте",
+        ];
+        for (const spamWord of spamWords) {
+          if (str.includes(spamWord)) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      // Приклад використання:
+      result = isSpam("Це 100% безкоштовно");
+      console.log(result); // Виведе true
+
+      function truncate(str, maxLength) {
+        if (str.length > maxLength) {
+          return str.slice(0, maxLength - 3) + "...";
+        }
+        return str;
+      }
+
+      // Приклад використання:
+      result = truncate("Hello, world!", 8);
+      console.log(result); // Виведе "Hello..."
+    </script>
+  </body>
+</html>
