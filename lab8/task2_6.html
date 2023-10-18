@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Завдання 2.6</title>
+  </head>
+  <body>
+    <h2>Task 2.6 open Console</h2>
+
+    <script>
+      function formatRelativeTime(input) {
+        const parts = input.split(" ");
+        if (parts.length !== 2) {
+          return "Невірний формат";
+        }
+        const datePart = parts[0].split(".");
+        const timePart = parts[1].split(":");
+        if (datePart.length !== 3 || timePart.length !== 2) {
+          return "Невірний формат";
+        }
+        const [day, month, year] = datePart.map(Number);
+        const [hours, minutes] = timePart.map(Number);
+        const inputDate = new Date(year, month - 1, day, hours, minutes);
+        const now = new Date();
+        const diff = (now - inputDate) / 1000;
+        if (diff < 60) {
+          return `${Math.floor(diff)} сек. назад`;
+        } else if (diff < 3600) {
+          return `${Math.floor(diff / 60)} хв. назад`;
+        } else {
+          return inputDate.toLocaleString("uk-UA", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+        }
+      }
+
+      // Приклад використання:
+      const input = "17.10.2023 15:08";
+      const result = formatRelativeTime(input);
+      console.log(result);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Завдання 2.4</title>
+  </head>
+  <body>
+    <h2>Task 2.4 open Console</h2>
+
+    <script>
+      function getLastDayOfMonth(year, month) {
+        const lastDay = new Date(year, month + 1, 0);
+        return lastDay.getDate();
+      }
+
+      // Приклад використання:
+      const year = 2023;
+      const month = 10; // Жовтень (індекс 9)
+      const lastDay = getLastDayOfMonth(year, month);
+      console.log(`Останній день місяця: ${lastDay}`);
+    </script>
+  </body>
+</html>

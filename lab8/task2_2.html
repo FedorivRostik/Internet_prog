@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Завдання 2.2</title>
+  </head>
+  <body>
+    <p id="output"></p>
+    <button onclick="getDayOfWeek()">
+      Виконати Завдання 2.2. Виведення дня і номера тижня
+    </button>
+
+    <script>
+      function getDayOfWeek() {
+        const date = new Date();
+        const dayNumber = date.getUTCDay(); // 0 - неділя, 1 - понеділок, і так далі
+        const daysOfWeek = [
+          "понеділок",
+          "вівторок",
+          "середа",
+          "четвер",
+          "п'ятниця",
+          "субота",
+          "неділя",
+        ];
+        document.getElementById(
+          "output"
+        ).textContent = `Номер тижня: ${dayNumber}\nНазва дня тижня: ${
+          daysOfWeek[dayNumber - 1]
+        }`;
+      }
+    </script>
+  </body>
+</html>

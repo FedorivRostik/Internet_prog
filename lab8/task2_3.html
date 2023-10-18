@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Завдання 2.3</title>
+  </head>
+  <body>
+    <p id="output"></p>
+    <input type="number" id="daysInput" placeholder="Введіть кількість днів" />
+    <button onclick="calculateDate()">
+      Виконати Завдання 2.3. Знайдіть дату N днів назад чи вперед
+    </button>
+
+    <script>
+      function calculateDate() {
+        const days = parseInt(document.getElementById("daysInput").value);
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + days);
+        const dateStr = currentDate.toDateString();
+        const comparison = days >= 0 ? "вперед" : "назад";
+        document.getElementById("output").textContent = `Дата ${Math.abs(
+          days
+        )} днів ${comparison}: ${dateStr}`;
+      }
+    </script>
+  </body>
+</html>

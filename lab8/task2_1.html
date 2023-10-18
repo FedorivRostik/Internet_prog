@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Завдання 2.1</title>
+  </head>
+  <body>
+    <p id="output"></p>
+    <button onclick="displayCurrentDate()">
+      Виконати Завдання 2.1. Виведення поточної дати, дня тижня і часу
+    </button>
+
+    <script>
+      function displayCurrentDate() {
+        const currentDate = new Date();
+        const options = {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          weekday: "long",
+          hour: "2-digit",
+          minute: "2-digit",
+        };
+        const formattedDate = currentDate.toLocaleString("uk-UA", options);
+        document.getElementById(
+          "output"
+        ).textContent = `Дата: ${formattedDate}`;
+      }
+    </script>
+  </body>
+</html>

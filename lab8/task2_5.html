@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Завдання 2.5</title>
+  </head>
+  <body>
+    <h2>Task 2.5 open Console</h2>
+
+    <script>
+      function getTimeUntilNextDay() {
+        const now = new Date();
+        const endOfDay = new Date(now);
+        endOfDay.setHours(24, 0, 0, 0);
+        const timeUntilEndOfDay = (endOfDay - now) / 1000; // Переведемо мілісекунди у секунди
+        const timeFromStartOfDay =
+          (now -
+            new Date(
+              now.getFullYear(),
+              now.getMonth(),
+              now.getDate(),
+              0,
+              0,
+              0,
+              0
+            )) /
+          1000;
+        return {
+          secondsUntilEndOfDay: timeUntilEndOfDay,
+          secondsFromStartOfDay: timeFromStartOfDay,
+        };
+      }
+
+      // Приклад використання:
+      const timeInfo = getTimeUntilNextDay();
+      console.log(`Секунд до кінця дня: ${timeInfo.secondsUntilEndOfDay}`);
+      console.log(`Секунд від початку дня: ${timeInfo.secondsFromStartOfDay}`);
+    </script>
+  </body>
+</html>

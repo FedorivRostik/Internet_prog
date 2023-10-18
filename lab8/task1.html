@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="timeObj.js"></script>
+  </head>
+  <body>
+    <h2>Open Console</h2>
+    <h2>Task1</h2>
+    <script>
+      // Приклад використання:
+
+      timeObject.hours = 20;
+      timeObject.minutes = 30;
+      timeObject.seconds = 45;
+
+      timeObject.displayTime(); // Виводить "20:30:45"
+
+      timeObject.changeSeconds(30);
+      timeObject.displayTime(); // Виводить "20:31:15"
+
+      timeObject.changeMinutes(15);
+      timeObject.displayTime(); // Виводить "20:46:15"
+
+      timeObject.changeHours(2);
+      timeObject.displayTime(); // Виводить "22:46:15"
+    </script>
+  </body>
+</html>
