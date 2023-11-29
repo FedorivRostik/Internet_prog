@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+        color: rebeccapurple;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        overflow: hidden;
+      }
+
+      .logo-container {
+        position: relative;
+        margin: auto;
+        text-align: center;
+        width: auto;
+        margin: auto;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+      }
+
+      .logo {
+        position: absolute;
+        top: 20%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+        height: 150px;
+        transition: background-color 0.5s ease;
+        animation: moveAround 2s infinite alternate,
+          changeColor 1s infinite alternate;
+      }
+
+      .text-info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      .active {
+        animation-play-state: running;
+      }
+      #textContainer,
+      #textInfo {
+        width: auto;
+
+        overflow: hidden;
+      }
+
+      @keyframes moveAround {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(50px) rotate(360deg);
+        }
+      }
+
+      @keyframes changeColor {
+        0% {
+          filter: saturate(1);
+        }
+        50% {
+          filter: saturate(5);
+        }
+        100% {
+          filter: saturate(10);
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes typeWriter {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+    </style>
+    <script>
+      function activateAnimation() {
+        var logo = document.getElementById("logo");
+        var textInfo = document.getElementById("textInfo");
+        var textContainer = document.getElementById("textContainer");
+
+        logo.classList.add("active");
+        textInfo.style.animation = "none";
+        textInfo.offsetHeight;
+        textInfo.style.animation = null;
+
+        setTimeout(function () {
+          logo.classList.remove("active");
+        }, 3000);
+      }
+
+      function animateOnLoad() {
+        var textInfo = document.getElementById("textInfo");
+        var textContainer = document.getElementById("textContainer");
+        textContainer.style.animation = "typeWriter 4s steps(200) forwards";
+        textInfo.style.animation = "typeWriter 4s steps(200) forwards";
+        textInfo.style.opacity = 1;
+        textContainer.style.opacity = 1;
+      }
+    </script>
+  </head>
+  <body onload="animateOnLoad()">
+    <div class="logo-container" onclick="activateAnimation()">
+      <img
+        class="logo"
+        id="logo"
+        src="https://pnu.edu.ua/wp-content/uploads/2020/05/400x400-PNU_logo_EN.png"
+        alt=""
+      />
+      <div id="textContainer">
+        <div class="text-info" id="textInfo">
+          Інженерія програмного забезпечення
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
