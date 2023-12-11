@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .modify {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="classBtn">Ввімкнути стилі для класу</button>
+    <button id="liBtn">
+      Ввімкнути стилі для кожного третього
+      <li></li>
+    </button>
+
+    <ul>
+      <li>Елемент 1</li>
+      <li>Елемент 2</li>
+      <li>Елемент 3</li>
+      <li>Елемент 4</li>
+      <li>Елемент 5</li>
+    </ul>
+
+    <script>
+      $("#classBtn").click(function () {
+        $("ul li")
+          .filter(".modify")
+          .removeClass("modify")
+          .end()
+          .addClass("modify");
+      });
+
+      $("#liBtn").click(function () {
+        $("ul li:nth-child(3n)").filter(":not(.modify)").addClass("modify");
+      });
+    </script>
+  </body>
+</html>

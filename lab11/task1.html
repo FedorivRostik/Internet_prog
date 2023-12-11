@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "- // W3C // DTD XHTML 1.0 Transitional // EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="content">Початковий текст</div>
+    <script>
+      var newHTML = "<p>Новий текст</p>";
+      $("#content").html(newHTML);
+    </script>
+
+    <div id="box">Моя скринька</div>
+    <script>
+      $("#box").css("background-color", "lightblue");
+    </script>
+
+    <input type="text" id="inputField" value="Початкове значення" />
+    <script>
+      var inputValue = $("#inputField").val();
+      console.log("Значення поля: " + inputValue);
+    </script>
+
+    <a
+      href="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+      id="myLink"
+      >Посилання</a
+    >
+    <script>
+      var hrefValue = $("#myLink").attr("href");
+      console.log("Атрибут href: " + hrefValue);
+    </script>
+    <img src="" alt="Моя картинка" id="myImage" />
+    <button onclick="removeAlt()">Видалити alt</button>
+    <script>
+      function removeAlt() {
+        $("#myImage").removeAttr("alt");
+      }
+    </script>
+  </body>
+</html>

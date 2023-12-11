@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="contentsBtn">.contents()</button>
+    <button id="nextBtn">.next()</button>
+    <button id="prevUntilBtn">.prevUntil()</button>
+    <button id="eqBtn">.eq()</button>
+    <button id="notBtn">.not()</button>
+
+    <div class="container">
+      <div>Елемент 1</div>
+      <div>Елемент 2</div>
+      <div>Елемент 3</div>
+      <div>Елемент 4</div>
+      <div>Елемент 5</div>
+    </div>
+
+    <script>
+      $("#contentsBtn").click(function () {
+        var contents = $(".container").contents();
+        contents.addClass("highlight");
+      });
+
+      $("#nextBtn").click(function () {
+        $(".container div:first").next().addClass("highlight");
+      });
+
+      $("#prevUntilBtn").click(function () {
+        $(".container div:last").prevUntil(":first").addClass("highlight");
+      });
+
+      $("#eqBtn").click(function () {
+        $(".container div").eq(2).addClass("highlight");
+      });
+
+      $("#notBtn").click(function () {
+        $(".container div").not(":even").addClass("highlight");
+      });
+    </script>
+  </body>
+</html>

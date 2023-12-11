@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .hovered {
+        background-color: lightblue;
+      }
+
+      .selected {
+        border: 2px solid red;
+        background-color: yellow;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        // Додано спеціальний стиль для div-об’єкта при одинарному та подвійному кліках
+        $("#hide_text")
+          .click(function () {
+            $(this).addClass("selected");
+          })
+          .dblclick(function () {
+            $(this).removeClass("selected");
+          });
+
+        // Створено дві кнопки з виведенням повідомлень
+        $("#btnSingleClick").click(function () {
+          alert("Одинарний клік");
+        });
+
+        $("#btnDoubleClick").dblclick(function () {
+          alert("Подвійний клік");
+        });
+
+        // Додано надпис "Показати зображення" з функціоналом для показу/приховання та спливаючого вікна
+        $("#showImage").click(function () {
+          $("#image").show();
+        });
+
+        $("#image")
+          .click(function () {
+            $(this).hide();
+          })
+          .hover(function () {
+            alert("Підпис до зображення");
+          });
+
+        // Додано форму для перевірки коректності введених даних
+        $("form").submit(function () {
+          if ($("input:first").val() == "correct") {
+            $("span").text("Успішно!").show().fadeOut(1000);
+            return true;
+          }
+          $("span").text("Неправильно!").show().fadeOut(1000);
+          return false;
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1>Контент сторінки</h1>
+    <a href="#" class="button"> Натисніть, щоб показати текст </a>
+    <div id="hide_text">Демонстраційний прихований текст</div>
+
+    <p></p>
+    <button id="btnSingleClick">Одинарний клік</button>
+    <button id="btnDoubleClick">Подвійний клік</button>
+    <p></p>
+
+    <p id="showImage">Показати зображення</p>
+    <img
+      id="image"
+      src="https://via.placeholder.com/150"
+      style="display: none"
+    />
+
+    <p>Введіть в текстове поле слово 'correct'.</p>
+    <form action="javascript:alert('Успішно!');">
+      <div>
+        <input type="text" />
+        <input type="submit" />
+      </div>
+    </form>
+    <span></span>
+  </body>
+</html>

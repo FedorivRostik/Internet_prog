@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <script>
+      // Приклад використання обраних методів
+      var element = $("<div>Привіт, це новий елемент!</div>");
+
+      // $.contains()
+      console.log("має елемет: " + $.contains(document.body, element[0]));
+
+      // $.data()
+      $.data(element[0], "key", "value");
+      console.log("Значення для ключа 'key': " + $.data(element[0], "key"));
+
+      // $.extend()
+      var obj1 = {
+        prop1: "значення1",
+        prop2: "значення2",
+      };
+      var obj2 = {
+        prop2: "нове значення2",
+        prop3: "значення3",
+      };
+      $.extend(obj1, obj2);
+      console.log("Об'єднані об'єкти: ", obj1);
+
+      // $.fn.extend()
+      $.fn.extend({
+        myFunction: function () {
+          return this.text("Це власна функція для вибраних елементів.");
+        },
+      });
+      $("div").myFunction();
+    </script>
+  </body>
+</html>

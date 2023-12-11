@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      #fadeBox {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="fadeBox"></div>
+    <button onclick="fadeInBox()">Fade In</button>
+    <button onclick="fadeOutBox()">Fade Out</button>
+    <button onclick="fadeToggleBox()">Fade Toggle</button>
+
+    <script>
+      function fadeInBox() {
+        $("#fadeBox").fadeIn(1000);
+      }
+
+      function fadeOutBox() {
+        $("#fadeBox").fadeOut(1000);
+      }
+
+      function fadeToggleBox() {
+        $("#fadeBox").fadeToggle(1000);
+      }
+    </script>
+  </body>
+</html>
